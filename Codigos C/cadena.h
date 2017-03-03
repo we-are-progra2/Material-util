@@ -8,11 +8,12 @@ class cadena
 	public:
 		char* cad;
 		// Operador para igualar a otra "cadena"
-		bool operator=(cadena & n)
+		bool operator= (cadena & n)
 		{
 			strcpy (this->cad, n.cad);
 		}
-		bool operator = ( char n[100])
+		// Operador para igualar con un valor
+		bool operator= ( char n[100])
 		{
 			cad = n;
 		}
