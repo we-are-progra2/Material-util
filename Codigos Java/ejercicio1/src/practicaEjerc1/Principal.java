@@ -16,7 +16,7 @@ public class Principal implements Entrada{
      */
     public static void main(String[] args) {
         
-       /* for (int i = 1; i <= Integer.parseInt(datos[0]); i++) {
+        for (int i = 1; i <= Integer.parseInt(datos[0]); i++) {
             
             if(equilibrado(datos[i])) {
                 
@@ -28,9 +28,9 @@ public class Principal implements Entrada{
                 
             }
             
-        }*/
+        }
        
-       if(equilibrado(datos[2])) {
+       /*if(equilibrado(datos[2])) {
                 
                 System.out.println("Caso #"+3+": SI");
                 
@@ -38,7 +38,7 @@ public class Principal implements Entrada{
                 
                 System.out.println("Caso #"+3+": NO");
                 
-            }
+            }*/
         
     }
     public static boolean equilibrado(String mensaje) {
@@ -83,19 +83,25 @@ public class Principal implements Entrada{
                     }
                 }
             }
-            for (int i = mensaje.length()-1; i > 0; i--) {
+            
+            for (int i = mensaje.length()-1; i > -1; i--) {
                 
-                if(mensaje.charAt(i) == ')' && mensaje.charAt(i-1) != ':') {
+                if(mensaje.charAt(i) == ')' && i != 0) {
                     
-                    if(abierto(mensaje, i-1)) {
+                    if(mensaje.charAt(i-1) != ':') {
                         
-                        bandera = true;
+                        if(abierto(mensaje, i-1)) {
                         
-                    }else {
+                            bandera = true;
                         
-                        return false;
+                        }else {
+                        
+                            return false;
+                        
+                        }
                         
                     }
+                    
                 }
             }
             
@@ -131,16 +137,22 @@ public class Principal implements Entrada{
     }
     public static boolean abierto(String mensaje, int indice) {
         
-        for (int i = mensaje.length()-1; i > 0; i--) {
+        for (int i = indice; i > -1; i--) {
             
             if(mensaje.charAt(i) == '(') {
                 
-                if(mensaje.charAt(i-1) == ':') {
+                if(i != 0) {
+                    if(mensaje.charAt(i-1) != ':') {
                     
-                    break;
+                        return true;
                     
+                    }    
+                }else {
+                    
+                    return true;
                 }
-                return true;
+                
+                
             }
             
         }
