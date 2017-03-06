@@ -16,15 +16,16 @@ public class Principal implements Entrada{
      */
     public static void main(String[] args) {
         
+        System.out.println(datos[0]);
         for (int i = 1; i <= Integer.parseInt(datos[0]); i++) {
             
             if(equilibrado(datos[i])) {
                 
-                System.out.println("Caso #"+i+": SI");
+                System.out.println(datos[i]+"\tCaso #"+i+": SI");
                 
             }else {
                 
-                System.out.println("Caso #"+i+": NO");
+                System.out.println(datos[i]+"\tCaso #"+i+": NO");
                 
             }
             
