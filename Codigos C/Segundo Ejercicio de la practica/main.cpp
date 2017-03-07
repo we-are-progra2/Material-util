@@ -12,80 +12,13 @@ struct datosComida {
 	
 };
 
-bool sumaGrasas(struct datosComida comidas[],int limiteGrasas,int valor,int indiceLimite,int contador) {
+bool suma(struct datosComida comidas[], int limiteProteinas, int limiteCarbohidratos, int limiteGrasas, int indice) {
 	
-		if(contador == indiceLimite) {
-		
-			if(valor == limiteGrasas) {
-				
-				return true;
-			
-			}else {
-			
-				return false;
-			}
-		
-		}
-		
-		valor += comidas[contador].grasas;
-		contador++;
-		sumaGrasas(comidas,limiteGrasas,valor,indiceLimite,contador);
+	
+	
 	
 }
-
-bool sumaCarbohidratos(struct datosComida comidas[],int limiteCarbohidratos,int limiteGrasas,int valor,
-					   int indiceLimite,int contador) {
-	
-	if(contador == indiceLimite) {
-		
-		if(valor == limiteCarbohidratos) {
-			
-			if(sumaGrasas(comidas,limiteGrasas,0,indiceLimite,0)) {
-				
-				return true;
-			}
-			
-		}else {
-			
-			return false;
-		}
-		
-	}
-		
-	valor += comidas[contador].carbohidratos;
-	contador++;
-	sumaCarbohidratos(comidas,limiteCarbohidratos,limiteGrasas,valor,indiceLimite,contador);
-}
-
-
-bool suma(struct datosComida comidas[],int limiteProteinas,int limiteCarbohidratos,int limiteGrasas
-		  ,int valor,int cantidad,int &contador) {
-	
-	if(contador == cantidad)
-	{
-		if(valor == limiteProteinas) {
-			
-			return true;
-			
-		}else {
-			
-			return false;
-		}
-	}else if(valor == limiteProteinas) {
-		      
-		      if(sumaCarbohidratos(comidas,limiteCarbohidratos,limiteGrasas,0,contador,0)) {
-		      	
-		      	return true;
-		      	
-		      }
-	
-	}
-	
-	valor += comidas[contador].proteinas;
-	contador++;
-	suma(comidas,limiteProteinas,limiteCarbohidratos,limiteGrasas,valor,cantidad,contador);
-}
-
+suma(comidas,limiteProteinas,limiteCarbohidratos,limiteGrasas,indice);
 
 bool Comidas(int cantProteinas, int cantCarbohidratos, int cantGrasas, fstream &archivo) {
 	
@@ -104,7 +37,7 @@ bool Comidas(int cantProteinas, int cantCarbohidratos, int cantGrasas, fstream &
 	}
 	for(int i = 0 ;i < cantComidas ; i++) {
 		
-		if(suma(comidas,cantProteinas,cantCarbohidratos,cantGrasas,0,cantComidas,contador)) {
+		if(suma(comidas,cantProteinas,cantCarbohidratos,cantGrasas,i)) {
 			
 			return true;
 			

@@ -30,16 +30,6 @@ public class Principal implements Entrada{
             }
             
         }
-       
-       /*if(equilibrado(datos[2])) {
-                
-                System.out.println("Caso #"+3+": SI");
-                
-            }else {
-                
-                System.out.println("Caso #"+3+": NO");
-                
-            }*/
         
     }
     public static boolean equilibrado(String mensaje) {
