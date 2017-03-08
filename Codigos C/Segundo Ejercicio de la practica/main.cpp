@@ -12,13 +12,49 @@ struct datosComida {
 	
 };
 
-bool suma(struct datosComida comidas[], int limiteProteinas, int limiteCarbohidratos, int limiteGrasas, int indice) {
+suma(comidas,limiteProteinas,limiteCarbohidratos,limiteGrasas,valorP,valorC,valorG,cantidad,auxiliar,contador);
+bool suma(struct datosComida comidas[],int limiteProteinas,int limiteCarbohidratos,int limiteGrasas
+		  ,int valorP,int valorC,int valorG,int cantidad,bool bandera,int indice) {
+	
+	if(indice == cantidad)
+	{
+		return false;
+	}
+	
+	if(valorP < limiteProteinas) {
+		
+		valorP += comidas[indice].proteinas;
+		suma(comidas,limiteProteinas,limiteCarbohidratos,limiteGrasas,valorP,valorC,valorG,cantidad,auxiliar,contador,indice+1);
+	}
+	if(valorP > limiteProteinas) {
+		
+		valorP -= comidas[indice].proteinas;
+		suma(comidas,limiteProteinas,limiteCarbohidratos,limiteGrasas,valorP,valorC,valorG,cantidad,auxiliar,contador,indice+1);
+		
+	}
+	if(valorP == limiteProteinas) {
+		
+		bandera = true;
+		return true;
+	}else {
+		
+		valorP -= comidas[indice].proteinas;
+		suma(comidas,limiteProteinas,limiteCarbohidratos,limiteGrasas,valorP,valorC,valorG,cantidad,auxiliar,contador,indice+1);
+	}
+	return false;
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
 	
 }
-suma(comidas,limiteProteinas,limiteCarbohidratos,limiteGrasas,indice);
 
 bool Comidas(int cantProteinas, int cantCarbohidratos, int cantGrasas, fstream &archivo) {
 	
