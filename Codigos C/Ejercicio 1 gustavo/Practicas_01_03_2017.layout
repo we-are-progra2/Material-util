@@ -2,7 +2,15 @@
 Order=0
 Focused=0
 [Editor_0]
+<<<<<<< HEAD:Codigos C/Ejercicio 1 gustavo/Practicas_01_03_2017.layout
 CursorCol=12
 CursorRow=130
 TopLine=1
+=======
+CursorCol=8
+CursorRow=118
+TopLine=184
+>>>>>>> d02dce8c8fcb7562a5fd32de075e85199df14f9d:Codigos C/Practicas_01_03_2017.layout
 LeftChar=1
+Open=1
+Top=1

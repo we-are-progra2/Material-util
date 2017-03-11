@@ -12,80 +12,49 @@ struct datosComida {
 	
 };
 
-bool sumaGrasas(struct datosComida comidas[],int limiteGrasas,int valor,int indiceLimite,int contador) {
-	
-		if(contador == indiceLimite) {
-		
-			if(valor == limiteGrasas) {
-				
-				return true;
-			
-			}else {
-			
-				return false;
-			}
-		
-		}
-		
-		valor += comidas[contador].grasas;
-		contador++;
-		sumaGrasas(comidas,limiteGrasas,valor,indiceLimite,contador);
-	
-}
-
-bool sumaCarbohidratos(struct datosComida comidas[],int limiteCarbohidratos,int limiteGrasas,int valor,
-					   int indiceLimite,int contador) {
-	
-	if(contador == indiceLimite) {
-		
-		if(valor == limiteCarbohidratos) {
-			
-			if(sumaGrasas(comidas,limiteGrasas,0,indiceLimite,0)) {
-				
-				return true;
-			}
-			
-		}else {
-			
-			return false;
-		}
-		
-	}
-		
-	valor += comidas[contador].carbohidratos;
-	contador++;
-	sumaCarbohidratos(comidas,limiteCarbohidratos,limiteGrasas,valor,indiceLimite,contador);
-}
-
-
+suma(comidas,limiteProteinas,limiteCarbohidratos,limiteGrasas,valorP,valorC,valorG,cantidad,auxiliar,contador);
 bool suma(struct datosComida comidas[],int limiteProteinas,int limiteCarbohidratos,int limiteGrasas
-		  ,int valor,int cantidad,int &contador) {
+		  ,int valorP,int valorC,int valorG,int cantidad,bool bandera,int indice) {
 	
-	if(contador == cantidad)
+	if(indice == cantidad)
 	{
-		if(valor == limiteProteinas) {
-			
-			return true;
-			
-		}else {
-			
-			return false;
-		}
-	}else if(valor == limiteProteinas) {
-		      
-		      if(sumaCarbohidratos(comidas,limiteCarbohidratos,limiteGrasas,0,contador,0)) {
-		      	
-		      	return true;
-		      	
-		      }
-	
+		return false;
 	}
 	
-	valor += comidas[contador].proteinas;
-	contador++;
-	suma(comidas,limiteProteinas,limiteCarbohidratos,limiteGrasas,valor,cantidad,contador);
+	if(valorP < limiteProteinas) {
+		
+		valorP += comidas[indice].proteinas;
+		suma(comidas,limiteProteinas,limiteCarbohidratos,limiteGrasas,valorP,valorC,valorG,cantidad,auxiliar,contador,indice+1);
+	}
+	if(valorP > limiteProteinas) {
+		
+		valorP -= comidas[indice].proteinas;
+		suma(comidas,limiteProteinas,limiteCarbohidratos,limiteGrasas,valorP,valorC,valorG,cantidad,auxiliar,contador,indice+1);
+		
+	}
+	if(valorP == limiteProteinas) {
+		
+		bandera = true;
+		return true;
+	}else {
+		
+		valorP -= comidas[indice].proteinas;
+		suma(comidas,limiteProteinas,limiteCarbohidratos,limiteGrasas,valorP,valorC,valorG,cantidad,auxiliar,contador,indice+1);
+	}
+	return false;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
-
 
 bool Comidas(int cantProteinas, int cantCarbohidratos, int cantGrasas, fstream &archivo) {
 	
@@ -104,7 +73,7 @@ bool Comidas(int cantProteinas, int cantCarbohidratos, int cantGrasas, fstream &
 	}
 	for(int i = 0 ;i < cantComidas ; i++) {
 		
-		if(suma(comidas,cantProteinas,cantCarbohidratos,cantGrasas,0,cantComidas,contador)) {
+		if(suma(comidas,cantProteinas,cantCarbohidratos,cantGrasas,i)) {
 			
 			return true;
 			
